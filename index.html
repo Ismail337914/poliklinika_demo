@@ -10,18 +10,110 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        html { overflow-x: hidden; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+        img, svg { max-width: 100%; display: block; }
+        * { box-sizing: border-box; }
         
-        /* Pozadinska mrežasta šara koja razbija monotoniju */
         .bg-grid-pattern {
             background-image: radial-gradient(rgba(20, 184, 166, 0.15) 1px, transparent 1px);
             background-size: 24px 24px;
         }
 
-        /* Ukrasna zakrivljena SVG linija */
         .curved-line {
             background: linear-gradient(90deg, transparent, #14b8a6, #3b82f6, transparent);
             height: 2px;
+        }
+
+        .hero-card-badge {
+            left: 0.75rem !important;
+            bottom: 0.75rem !important;
+            right: 0.75rem !important;
+            max-width: none !important;
+            width: auto !important;
+        }
+
+        @media (max-width: 640px) {
+            .topbar-inner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .topbar-link {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .navbar-shell {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+
+            .navbar-brand {
+                gap: 0.5rem;
+                max-width: calc(100% - 0.5rem);
+                flex: 1 1 auto;
+                min-width: 0;
+            }
+
+            .brand-icon {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+
+            .brand-text {
+                font-size: 0.95rem;
+                white-space: nowrap;
+            }
+
+            .brand-subtext {
+                display: none;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: clamp(2.2rem, 9vw, 3.5rem);
+                letter-spacing: -0.04em;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .hero-actions a {
+                width: 100%;
+            }
+
+            .hero-image-shell {
+                margin-top: 1.5rem;
+            }
+
+            .hero-card-badge {
+                left: 0.75rem !important;
+                right: 0.75rem !important;
+                bottom: 0.75rem !important;
+                width: auto !important;
+                max-width: none !important;
+                margin-top: 0;
+            }
+
+            .hero-image {
+                height: 320px;
+            }
+
+            .form-box {
+                padding: 1.25rem;
+                border-radius: 1.5rem;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -29,12 +121,15 @@
 
     <!-- TOP BAR -->
     <div class="bg-slate-900/90 border-b border-slate-800/80 text-xs py-2.5 px-4 relative z-50">
-        <div class="max-w-7xl mx-auto flex justify-between items-center text-slate-400">
-            <div class="flex items-center gap-6">
-                <span class="flex items-center gap-2"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-teal-400"></i> Centralna Lokacija</span>
-                <span class="hidden md:flex items-center gap-2"><i data-lucide="clock" class="w-3.5 h-3.5 text-teal-400"></i> Pon - Sob: 08:00 - 20:00</span>
+        <div class="topbar-inner max-w-7xl mx-auto flex justify-between items-center text-slate-400">
+            <div class="flex items-center gap-3 sm:gap-6 flex-wrap">
+                <!-- GOOGLE MAPS DIRECT LINK -->
+                <a href="https://maps.google.com/?q=Poliklinika" target="_blank" class="flex items-center gap-2 hover:text-teal-400 transition">
+                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-teal-400"></i> Centralna lokacija (Prikaži na mapi)
+                </a>
+                <span class="hidden md:flex items-center gap-2"><i data-lucide="clock" class="w-3.5 h-3.5 text-teal-400"></i> Pon - Sub: 08:00 - 20:00</span>
             </div>
-            <a href="tel:+38733000000" class="hover:text-white font-semibold flex items-center gap-1.5 text-teal-400">
+            <a href="tel:+38733000000" class="topbar-link hover:text-white font-semibold flex items-center gap-1.5 text-teal-400">
                 <i data-lucide="phone-call" class="w-3.5 h-3.5"></i> Hitni prijem: +387 33 000 000
             </a>
         </div>
@@ -42,37 +137,36 @@
 
     <!-- NAVBAR -->
     <nav class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-xl border-b border-slate-800/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex items-center gap-3">
-                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-teal-500 via-blue-600 to-indigo-600 flex items-center justify-center text-white font-extrabold text-2xl shadow-lg shadow-teal-500/25 rotate-3">
+        <div class="navbar-shell max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center gap-3">
+                <div class="navbar-brand flex items-center gap-3 min-w-0">
+                    <div class="brand-icon w-11 h-11 rounded-2xl bg-gradient-to-tr from-teal-500 via-blue-600 to-indigo-600 flex items-center justify-center text-white font-extrabold text-2xl shadow-lg shadow-teal-500/25 rotate-3 shrink-0">
                         <i data-lucide="activity" class="w-6 h-6 -rotate-3"></i>
                     </div>
-                    <div>
-                        <span class="text-xl font-black tracking-tight text-white block leading-none">POLIKLINIKA</span>
-                        <span class="text-[10px] text-teal-400 font-bold tracking-widest uppercase">Ekspertni Centar</span>
+                    <div class="min-w-0">
+                        <span class="brand-text text-xl font-black tracking-tight text-white block leading-none">POLIKLINIKA</span>
+                        <span class="brand-subtext text-[10px] text-teal-400 font-bold tracking-widest uppercase">Ekspertni centar</span>
                     </div>
                 </div>
                 
                 <div class="hidden md:flex items-center gap-8 font-semibold text-slate-300 text-sm tracking-wide">
                     <a href="#pocetna" class="hover:text-teal-400 transition">Početna</a>
                     <a href="#usluge" class="hover:text-teal-400 transition">Usluge</a>
-                    <a href="#prednosti" class="hover:text-teal-400 transition">O nama</a>
-                    <a href="#kontakt" class="hover:text-teal-400 transition">Kontakt</a>
+                    <a href="#novosti" class="hover:text-teal-400 transition">Novosti</a>
+                    <a href="#recenzije" class="hover:text-teal-400 transition">Iskustva</a>
+                    <a href="#zakazi" class="hover:text-teal-400 transition">Kontakt</a>
                 </div>
 
-                <a href="#zakazi" class="relative inline-flex items-center gap-2 bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-400 hover:to-blue-500 text-slate-950 font-extrabold px-6 py-3 rounded-2xl text-sm shadow-lg shadow-teal-500/20 hover:shadow-teal-500/40 hover:scale-105 transition-all duration-300">
+                <a href="#zakazi" class="nav-cta relative inline-flex items-center gap-2 bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-400 hover:to-blue-500 text-slate-950 font-extrabold px-6 py-3 rounded-2xl text-sm shadow-lg shadow-teal-500/20 hover:shadow-teal-500/40 hover:scale-105 transition-all duration-300">
                     <i data-lucide="calendar" class="w-4 h-4"></i>
-                    Zakaži Pregled
+                    Zakaži pregled
                 </a>
             </div>
         </div>
     </nav>
 
-    <!-- HERO SECTION WITH MESH PATTERN AND CURVED SVG BACKGROUND -->
+    <!-- HERO SECTION -->
     <section id="pocetna" class="relative pt-12 pb-32 md:pt-20 md:pb-44 overflow-hidden bg-slate-950 bg-grid-pattern">
-        
-        <!-- Organic Glow Blobs -->
         <div class="absolute top-10 left-10 w-96 h-96 bg-teal-500/10 rounded-full blur-[140px] pointer-events-none"></div>
         <div class="absolute bottom-10 right-10 w-[500px] h-[500px] bg-blue-600/15 rounded-full blur-[160px] pointer-events-none"></div>
 
@@ -82,48 +176,41 @@
                 <div class="lg:col-span-7 space-y-8">
                     <div class="inline-flex items-center gap-2.5 bg-slate-900/90 border border-teal-500/30 text-teal-300 px-4 py-2 rounded-full text-xs font-bold backdrop-blur-md shadow-inner">
                         <span class="w-2.5 h-2.5 rounded-full bg-teal-400 animate-ping"></span>
-                        Bez redova i dugog čekanja
+                        Bez reda i dugog čekanja
                     </div>
                     
-                    <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight leading-[1.1]">
-                        Zdravstvena zaštita ukrojena po <span class="bg-gradient-to-r from-teal-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">Vašoj mjeri.</span>
+                    <h1 class="hero-title text-4xl sm:text-6xl font-black text-white tracking-tight leading-[1.1]">
+                        Zdravstvena zaštita <span class="bg-gradient-to-r from-teal-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">ukrojena po vašoj mjeri.</span>
                     </h1>
                     
-                    <p class="text-lg text-slate-400 max-w-xl font-normal leading-relaxed">
-                        Spoj najsavremenije evropske dijagnostičke opreme i renomiranih stručnjaka. Pružamo vam brze nalaze i posvećenost od prvog minuta.
+                    <p class="text-base sm:text-lg text-slate-400 max-w-xl font-normal leading-relaxed">
+                        Spajamo najmoderniju evropsku dijagnostičku opremu i renomirane stručnjake. Pružamo vam brze i precizne nalaze te posvećenost od prvog minuta.
                     </p>
                     
-                    <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                    <div class="hero-actions flex flex-col sm:flex-row gap-4 pt-2">
                         <a href="#zakazi" class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-teal-400 to-blue-600 hover:from-teal-300 hover:to-blue-500 text-slate-950 font-black px-8 py-4 rounded-2xl text-base shadow-xl shadow-teal-500/25 transition-all hover:scale-105">
                             <i data-lucide="check-circle" class="w-5 h-5"></i>
-                            Zakažite Pregled
+                            Zakažite pregled
                         </a>
                         <a href="#usluge" class="inline-flex items-center justify-center gap-2 bg-slate-900/90 hover:bg-slate-800 border border-slate-800 text-slate-300 px-8 py-4 rounded-2xl text-base font-semibold backdrop-blur-md transition">
-                            Pogledaj Specijalizacije
+                            Pogledaj specijalizacije
                         </a>
                     </div>
                 </div>
 
-                <!-- HERO IMAGE WITH ASYMMETRIC / CURVED FRAME -->
-                <div class="lg:col-span-5 relative">
-                    <!-- Background Decorative SVG Ring -->
-                    <svg class="absolute -top-10 -right-10 w-40 h-40 text-teal-500/20 animate-spin-slow" viewBox="0 0 100 100">
-                        <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="6 6"/>
-                    </svg>
-
+                <div class="hero-image-shell lg:col-span-5 relative">
                     <div class="relative mx-auto rounded-[3rem] p-3 bg-gradient-to-br from-teal-500/30 via-slate-800 to-blue-600/30 border border-slate-800 shadow-2xl">
                         <div class="rounded-[2.5rem] overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1000&q=80" alt="Poliklinika" class="w-full h-[460px] object-cover">
+                            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1000&q=80" alt="Poliklinika" class="hero-image w-full h-[460px] object-cover">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
                         </div>
 
-                        <!-- Asymmetric Floating Pill Badge -->
-                        <div class="absolute -bottom-6 -left-6 bg-slate-900/95 border border-slate-700/80 p-4 rounded-3xl shadow-2xl backdrop-blur-xl flex items-center gap-4 max-w-xs">
+                        <div class="hero-card-badge absolute bg-slate-900/95 border border-slate-700/80 p-4 rounded-3xl shadow-2xl backdrop-blur-xl flex items-center gap-4">
                             <div class="w-12 h-12 rounded-2xl bg-teal-500/20 text-teal-400 flex items-center justify-center shrink-0">
                                 <i data-lucide="shield-check" class="w-6 h-6"></i>
                             </div>
                             <div>
-                                <h4 class="text-sm font-bold text-white">Sertifikovana Klinika</h4>
+                                <h4 class="text-sm font-bold text-white">Sertifikovana klinika</h4>
                                 <p class="text-xs text-slate-400">Najviši standardi higijene i opreme</p>
                             </div>
                         </div>
@@ -133,7 +220,6 @@
             </div>
         </div>
 
-        <!-- 🌊 KRIVA LINIJA / SVG TALAS IZMEĐU SEKCIJA (RAZBIJA AI OBRAZAC) -->
         <div class="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none z-20">
             <svg class="relative block w-full h-12 md:h-24 text-slate-900" viewBox="0 0 1200 120" preserveAspectRatio="none">
                 <path d="M0,0 C150,90 350,-40 500,40 C650,120 900,10 1200,40 L1200,120 L0,120 Z" fill="currentColor"></path>
@@ -141,76 +227,152 @@
         </div>
     </section>
 
-    <!-- USLUGE SECTION (SA TALASASTIM PRELAZOM) -->
+    <!-- USLUGE SECTION -->
     <section id="usluge" class="py-20 bg-slate-900 relative z-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
-                <span class="text-xs font-bold text-teal-400 uppercase tracking-widest block">Sveobuhvatna Dijagnostika</span>
-                <h2 class="text-3xl sm:text-5xl font-black text-white">Naše Specijalističke Usluge</h2>
+                <span class="text-xs font-bold text-teal-400 uppercase tracking-widest block">Sveobuhvatna dijagnostika</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white">Naše specijalističke usluge</h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-teal-400 to-blue-600 mx-auto rounded-full mt-4"></div>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Card 1 -->
-                <div class="group relative p-8 rounded-[2rem] bg-slate-950 border border-slate-800 hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-2 shadow-xl">
-                    <!-- Decorative Corner Wave Accent -->
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-teal-500/5 rounded-bl-[4rem] group-hover:bg-teal-500/10 transition"></div>
-                    
+                <div class="service-card group relative p-8 rounded-[2rem] bg-slate-950 border border-slate-800 hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-2 shadow-xl">
                     <div class="w-14 h-14 rounded-2xl bg-teal-500/10 text-teal-400 flex items-center justify-center mb-6 group-hover:scale-110 transition">
                         <i data-lucide="heart-pulse" class="w-7 h-7"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-3">Kardiologija</h3>
                     <p class="text-slate-400 text-sm leading-relaxed mb-6">Kompletan pregled srca, EKG, Holter monitoring i savremena ultrazvučna dijagnostika.</p>
-                    <a href="#zakazi" class="text-teal-400 text-sm font-bold flex items-center gap-2 hover:gap-3 transition-all">Zakaži pregled &rarr;</a>
+                    <button onclick="selectServiceAndScroll('Interna medicina / kardiologija')" class="text-teal-400 text-sm font-bold flex items-center gap-2 hover:gap-3 transition-all">
+                        Zakaži pregled &rarr;
+                    </button>
                 </div>
 
-                <!-- Card 2 -->
-                <div class="group relative p-8 rounded-[2rem] bg-slate-950 border border-slate-800 hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-2 shadow-xl">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 rounded-bl-[4rem] group-hover:bg-blue-500/10 transition"></div>
-
+                <!-- Card 2 (4D ULTRAZVUK) -->
+                <div class="service-card group relative p-8 rounded-[2rem] bg-slate-950 border border-slate-800 hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-2 shadow-xl">
                     <div class="w-14 h-14 rounded-2xl bg-blue-500/10 text-blue-400 flex items-center justify-center mb-6 group-hover:scale-110 transition">
                         <i data-lucide="scan" class="w-7 h-7"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-3">4D Ultrazvuk</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">Pouzdan ultrazvuk abdomena, štitne žlijezde, zglobova i mekih tkiva visokog koda.</p>
-                    <a href="#zakazi" class="text-teal-400 text-sm font-bold flex items-center gap-2 hover:gap-3 transition-all">Zakaži pregled &rarr;</a>
+                    <h3 class="text-xl font-bold text-white mb-3">4D ultrazvuk</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">Pouzdan ultrazvuk abdomena, štitne žlijezde, zglobova i mekih tkiva visoke preciznosti.</p>
+                    <button onclick="selectServiceAndScroll('Ultrazvučni pregled (4D)')" class="text-teal-400 text-sm font-bold flex items-center gap-2 hover:gap-3 transition-all">
+                        Zakaži pregled &rarr;
+                    </button>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="group relative p-8 rounded-[2rem] bg-slate-950 border border-slate-800 hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-2 shadow-xl">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-indigo-500/5 rounded-bl-[4rem] group-hover:bg-indigo-500/10 transition"></div>
-
+                <div class="service-card group relative p-8 rounded-[2rem] bg-slate-950 border border-slate-800 hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-2 shadow-xl">
                     <div class="w-14 h-14 rounded-2xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center mb-6 group-hover:scale-110 transition">
                         <i data-lucide="flask-conical" class="w-7 h-7"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-3">Laboratorija</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">Preko 400 vrsti analiza krvi, hormona i bi hemije s rezultatima u istom danu.</p>
-                    <a href="#zakazi" class="text-teal-400 text-sm font-bold flex items-center gap-2 hover:gap-3 transition-all">Zakaži pregled &rarr;</a>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">Više od 400 vrsta analiza krvi, hormona i biohemije s rezultatima istog dana.</p>
+                    <button onclick="selectServiceAndScroll('Laboratorijska dijagnostika')" class="text-teal-400 text-sm font-bold flex items-center gap-2 hover:gap-3 transition-all">
+                        Zakaži pregled &rarr;
+                    </button>
                 </div>
             </div>
 
         </div>
+    </section>
 
-        <!-- 🌊 DRUGI SVG TALAS (PRELAZ NA TAMNIJU SEKCIJU ZA FORMU) -->
-        <div class="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none">
-            <svg class="relative block w-full h-12 md:h-20 text-slate-950" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M0,0 C300,90 600,-40 900,60 C1050,110 1150,40 1200,20 L1200,120 L0,120 Z" fill="currentColor"></path>
-            </svg>
+    <!-- NOVOSTI SEKCIJA -->
+    <section id="novosti" class="py-20 bg-slate-950 border-t border-slate-900 relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                <div>
+                    <span class="text-xs font-bold text-teal-400 uppercase tracking-widest block">Informativni kutak</span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-white mt-1">Novosti iz naše klinike</h2>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Vijest 1 -->
+                <div class="bg-slate-900 border border-slate-800 p-6 md:p-8 rounded-3xl relative overflow-hidden flex flex-col justify-between">
+                    <span class="inline-block bg-teal-500/10 text-teal-400 border border-teal-500/30 text-[10px] font-extrabold uppercase px-3 py-1 rounded-full w-fit mb-4">Novo u ponudi</span>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-3">Dostupne usluge psihoterapeuta od septembra 2026.</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">S ponosom najavljujemo proširenje našeg tima. Od septembra 2026. godine u našoj klinici moći ćete zakazati individualne i grupne sesije sa licenciranim psihoterapeutom.</p>
+                    </div>
+                    <div class="text-xs text-slate-500 font-semibold">Objavljeno: Avgust 2026.</div>
+                </div>
+
+                <!-- Vijest 2 -->
+                <div class="bg-slate-900 border border-slate-800 p-6 md:p-8 rounded-3xl flex flex-col justify-between">
+                    <span class="inline-block bg-blue-500/10 text-blue-400 border border-blue-500/30 text-[10px] font-extrabold uppercase px-3 py-1 rounded-full w-fit mb-4">Tehnologija</span>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-3">Instaliran novi 4D ultrazvučni aparat</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Nabavkom najnovije generacije ultrazvučnih uređaja omogućili smo još precizniju dijagnostiku mekih tkiva i abdominalnih organa uz minimalno vrijeme pregleda.</p>
+                    </div>
+                    <div class="text-xs text-slate-500 font-semibold">Objavljeno: Jula 2026.</div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- FORMA ZAKAŽI (SA ASIMETRIČNIM DIZAJNOM) -->
-    <section id="zakazi" class="py-24 bg-slate-950 relative z-20">
+    <!-- RECENZIJE / MIŠLJENJA PACIJENATA SEKCIJA -->
+    <section id="recenzije" class="py-20 bg-slate-900 border-t border-slate-800/60 relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-bold text-teal-400 uppercase tracking-widest block">Iskustva pacijenata</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-white mt-1">Mišljenja naših klijenata</h2>
+                <p class="text-slate-400 text-sm mt-3">Vaše povjerenje je naš najveći uspjeh. Pročitajte šta pacijenti kažu o nama.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <!-- Recenzija 1 -->
+                <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 mb-3 text-sm">★★★★★</div>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4">"Izuzetno ljubazno osoblje i doktori koji odvoje vrijeme da vam sve detaljno objasne. Nalazi laboratorije gotovi isti dan!"</p>
+                    </div>
+                    <span class="text-xs font-bold text-teal-400">— Mirza K.</span>
+                </div>
+
+                <!-- Recenzija 2 -->
+                <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 mb-3 text-sm">★★★★★</div>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4">"Zakažem u 10h, uđem u 10h. Bez ikakvog čekanja u hodnicima. Klinika je čista, moderna i skroz profesionalna."</p>
+                    </div>
+                    <span class="text-xs font-bold text-teal-400">— Amra S.</span>
+                </div>
+
+                <!-- Recenzija 3 -->
+                <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 mb-3 text-sm">★★★★★</div>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4">"Pregled ultrazvukom je urađen maksimalno detaljno. Sve pohvale za pristup i stručnost tima."</p>
+                    </div>
+                    <span class="text-xs font-bold text-teal-400">— Damir O.</span>
+                </div>
+            </div>
+
+            <!-- GOOGLE MAPS POZIV NA OCJENU -->
+            <div class="bg-gradient-to-r from-teal-500/10 to-blue-600/10 border border-teal-500/30 rounded-2xl p-6 text-center max-w-xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="text-left">
+                    <h4 class="text-white font-bold text-sm">Bili ste naš pacijent?</h4>
+                    <p class="text-slate-400 text-xs mt-0.5">Podijelite vaše iskustvo i pomozite drugima.</p>
+                </div>
+                <a href="https://maps.google.com/?q=Poliklinika" target="_blank" class="bg-teal-400 hover:bg-teal-300 text-slate-950 font-black px-5 py-2.5 rounded-xl text-xs flex items-center gap-2 whitespace-nowrap transition">
+                    <i data-lucide="star" class="w-4 h-4"></i> Ocijeni na Google Maps
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMA ZAKAŽI -->
+    <section id="zakazi" class="py-24 bg-slate-950 relative z-20 border-t border-slate-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-12 gap-12 items-center">
                 
                 <div class="lg:col-span-6 space-y-6">
-                    <span class="text-xs font-bold text-teal-400 uppercase tracking-widest block">Jednostavna Prijava</span>
-                    <h2 class="text-3xl sm:text-5xl font-black text-white leading-tight">Zakažite Pregled Bez Čekanja</h2>
-                    <p class="text-slate-400 leading-relaxed">Nakon što pošaljete formu, naše osoblje će Vas pozvati u roku od 15 minuta da potvrdi tačno vrijeme Vašeg dolaska.</p>
+                    <span class="text-xs font-bold text-teal-400 uppercase tracking-widest block">Jednostavna prijava</span>
+                    <h2 class="text-3xl sm:text-5xl font-black text-white leading-tight">Zakažite pregled bez čekanja</h2>
+                    <p class="text-slate-400 leading-relaxed">Nakon što pošaljete formular, naše osoblje će vas pozvati u roku od 15 minuta kako bi potvrdilo tačno vrijeme vašeg dolaska.</p>
 
-                    <!-- Curved Decorative Divider -->
                     <div class="curved-line w-full rounded-full my-6"></div>
 
                     <div class="space-y-4">
@@ -219,34 +381,40 @@
                                 <i data-lucide="phone"></i>
                             </div>
                             <div>
-                                <span class="text-xs text-slate-500 block font-semibold">Direktni Telefon</span>
+                                <span class="text-xs text-slate-500 block font-semibold">Direktni telefon</span>
                                 <span class="font-bold text-white text-lg">+387 33 000 000</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Form Container with Curved Asymmetric Borders -->
-                <div class="lg:col-span-6 bg-slate-900 border border-slate-800/80 p-8 sm:p-10 rounded-[2.5rem] shadow-2xl relative">
-                    <form onsubmit="event.preventDefault(); alert('Upit uspješno poslan!');" class="space-y-5">
+                <!-- Form Container sa novalidate i JS validacijom -->
+                <div class="form-box lg:col-span-6 bg-slate-900 border border-slate-800/80 p-8 sm:p-10 rounded-[2.5rem] shadow-2xl relative">
+                    <form id="booking-form" novalidate onsubmit="handleFormSubmit(event)" class="space-y-5">
                         <div>
-                            <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Ime i Prezime</label>
-                            <input type="text" placeholder="npr. Dragan Radić" required class="w-full px-4 py-3.5 rounded-2xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-teal-400 transition text-sm">
+                            <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Ime i prezime</label>
+                            <input type="text" id="fullname" placeholder="npr. Emin Hadžić" class="w-full px-4 py-3.5 rounded-2xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-teal-400 transition text-sm">
+                            <p id="err-fullname" class="text-red-400 text-xs mt-1 hidden">Molimo unesite vaše ime i prezime.</p>
                         </div>
+
                         <div>
-                            <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Broj Telefona</label>
-                            <input type="tel" placeholder="061 123 456" required class="w-full px-4 py-3.5 rounded-2xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-teal-400 transition text-sm">
+                            <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Broj telefona</label>
+                            <input type="tel" id="phone" placeholder="061 123 456" class="w-full px-4 py-3.5 rounded-2xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-teal-400 transition text-sm">
+                            <p id="err-phone" class="text-red-400 text-xs mt-1 hidden">Molimo unesite ispravan broj telefona (npr. 061123456).</p>
                         </div>
+
                         <div>
-                            <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Odabir Specijalizacije</label>
-                            <select class="w-full px-4 py-3.5 rounded-2xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-teal-400 transition text-sm">
-                                <option>Interna Medicina / Kardiologija</option>
-                                <option>Ultrazvučni Pregled</option>
-                                <option>Laboratorija</option>
+                            <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Odabir specijalizacije</label>
+                            <select id="service-select" class="w-full px-4 py-3.5 rounded-2xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-teal-400 transition text-sm">
+                                <option value="Interna medicina / kardiologija">Interna medicina / kardiologija</option>
+                                <option value="Ultrazvučni pregled (4D)">Ultrazvučni pregled (4D)</option>
+                                <option value="Laboratorijska dijagnostika">Laboratorijska dijagnostika</option>
+                                <option value="Psihoterapija (Od septembra)">Psihoterapija (Od septembra)</option>
                             </select>
                         </div>
+
                         <button type="submit" class="w-full bg-gradient-to-r from-teal-400 to-blue-600 hover:from-teal-300 hover:to-blue-500 text-slate-950 font-black py-4 rounded-2xl shadow-lg shadow-teal-500/20 transition hover:scale-[1.02] text-sm">
-                            Potvrdi i Pošalji Zahtjev
+                            Potvrdi i pošalji zahtjev
                         </button>
                     </form>
                 </div>
@@ -256,12 +424,62 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-950 border-t border-slate-900 py-8 text-center text-xs text-slate-600">
+    <footer class="bg-slate-950 border-t border-slate-900 py-8 text-center text-xs text-slate-600 px-4">
         <p>&copy; 2026 Poliklinika Ekspert. Sva prava zadržana.</p>
     </footer>
 
     <script>
         lucide.createIcons();
+
+        // Funkcija za automatski odabir usluge u formi i skrolovanje
+        function selectServiceAndScroll(serviceName) {
+            const select = document.getElementById('service-select');
+            if (select) {
+                select.value = serviceName;
+            }
+            const zakaziSection = document.getElementById('zakazi');
+            if (zakaziSection) {
+                zakaziSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Custom validacija forme na bosanskom jeziku
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            const fullname = document.getElementById('fullname');
+            const phone = document.getElementById('phone');
+            const errFullname = document.getElementById('err-fullname');
+            const errPhone = document.getElementById('err-phone');
+
+            let isValid = true;
+
+            // Validacija imena
+            if (!fullname.value.trim()) {
+                errFullname.classList.remove('hidden');
+                fullname.classList.add('border-red-500');
+                isValid = false;
+            } else {
+                errFullname.classList.add('hidden');
+                fullname.classList.remove('border-red-500');
+            }
+
+            // Validacija broja telefona (dozvoljava brojeve, razmake, plus i crtice, min 6 cifara)
+            const phoneRegex = /^[\+\d\s\-\/]{6,20}$/;
+            if (!phoneRegex.test(phone.value.trim())) {
+                errPhone.classList.remove('hidden');
+                phone.classList.add('border-red-500');
+                isValid = false;
+            } else {
+                errPhone.classList.add('hidden');
+                phone.classList.remove('border-red-500');
+            }
+
+            if (isValid) {
+                alert('Vaš zahtjev je uspješno poslan! Kontaktiraćemo vas ubrzo.');
+                document.getElementById('booking-form').reset();
+            }
+        }
     </script>
 </body>
 </html>
