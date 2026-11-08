@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poliklinika - Ekspertna Dijagnostika</title>
+    <title>Poliklinika dr. Bajramagić | Ekspertna dijagnostika</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=Lora:wght@500;600;700&display=swap');
         html { overflow-x: hidden; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
         img, svg { max-width: 100%; display: block; }
@@ -35,14 +35,14 @@
 
         @media (max-width: 640px) {
             .topbar-inner {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
+                flex-direction: row;
+                align-items: center;
+                gap: 0;
             }
 
             .topbar-link {
-                width: 100%;
-                justify-content: flex-start;
+                width: auto;
+                justify-content: center;
             }
 
             .navbar-shell {
@@ -68,11 +68,48 @@
             }
 
             .brand-subtext {
-                display: none;
+                font-size: 8px;
             }
 
             .nav-cta {
+                display: inline-flex !important;
+                gap: 0.35rem !important;
+                padding: 0.55rem 0.7rem !important;
+                font-size: 0.72rem !important;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+
+            .nav-cta .cta-desktop {
                 display: none;
+            }
+
+            .nav-cta .cta-mobile {
+                display: inline;
+            }
+
+            .topbar-label {
+                display: none;
+            }
+
+            .topbar-inner > div {
+                gap: 0.25rem;
+            }
+
+            .topbar-icon-link {
+                width: 2.5rem;
+                height: 2rem;
+                justify-content: center;
+                border-radius: 0.4rem;
+            }
+
+            .topbar-icon-link i {
+                width: 1rem;
+                height: 1rem;
+            }
+
+            .navbar-shell > div {
+                height: 4rem !important;
             }
 
             .hero-title {
@@ -115,6 +152,227 @@
                 padding: 1.5rem;
             }
         }
+
+        :root {
+            color-scheme: light;
+            --paper: #f5f3ed;
+            --surface: #fffefa;
+            --surface-muted: #e9eee7;
+            --ink: #263a33;
+            --muted: #68766f;
+            --forest: #315e4f;
+            --forest-dark: #21483d;
+            --clay: #bd7558;
+            --line: #dce2d9;
+        }
+
+        body {
+            background: var(--paper) !important;
+            color: var(--ink) !important;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Lora', Georgia, serif;
+            font-weight: 600 !important;
+            letter-spacing: -0.035em;
+        }
+
+        [class~="bg-slate-950"],
+        [class~="bg-slate-950/95"] {
+            background-color: var(--surface) !important;
+        }
+
+        [class~="bg-slate-950/80"] {
+            background-color: rgb(255 254 250 / 94%) !important;
+        }
+
+        [class~="bg-slate-900"],
+        [class~="bg-slate-900/90"] {
+            background-color: var(--surface-muted) !important;
+        }
+
+        [class~="bg-slate-800"] {
+            background-color: #e1e7df !important;
+        }
+
+        [class*="text-slate-950"],
+        [class*="text-slate-100"],
+        [class*="text-slate-200"],
+        [class*="text-slate-300"],
+        [class*="text-slate-400"] {
+            color: var(--ink) !important;
+        }
+
+        [class*="text-slate-500"],
+        [class*="text-slate-600"] {
+            color: var(--muted) !important;
+        }
+
+        [class~="text-white"] {
+            color: var(--ink) !important;
+        }
+
+        [class*="border-slate-"] {
+            border-color: var(--line) !important;
+        }
+
+        [class*="text-teal-"],
+        [class*="text-blue-"],
+        [class*="text-indigo-"] {
+            color: var(--forest) !important;
+        }
+
+        [class*="bg-teal-"],
+        [class*="bg-blue-"],
+        [class*="bg-indigo-"] {
+            background-color: var(--surface-muted) !important;
+        }
+
+        [class*="border-teal-"],
+        [class*="border-blue-"],
+        [class*="border-indigo-"] {
+            border-color: #cad9cf !important;
+        }
+
+        body[class~="bg-slate-950"] {
+            background-color: var(--paper) !important;
+        }
+
+        .bg-grid-pattern {
+            background-color: var(--paper) !important;
+            background-image: radial-gradient(rgb(49 94 79 / 10%) 1px, transparent 1px);
+        }
+
+        .curved-line {
+            background: linear-gradient(90deg, transparent, var(--clay), var(--forest), transparent);
+        }
+
+        .topbar-inner {
+            color: #e7eee8 !important;
+        }
+
+        .topbar-label {
+            display: inline;
+        }
+
+        body > .bg-slate-900\/90 {
+            background-color: var(--forest-dark) !important;
+        }
+
+        body > .bg-slate-900\/90 * {
+            color: #e7eee8 !important;
+        }
+
+        nav {
+            border-color: var(--line) !important;
+        }
+
+        .brand-icon,
+        .nav-cta,
+        .hero-actions a:first-child,
+        button[type="submit"] {
+            background: var(--forest) !important;
+            color: #fffefa !important;
+            box-shadow: 0 8px 20px rgb(33 72 61 / 12%) !important;
+        }
+
+        .brand-icon i {
+            color: #fffefa !important;
+        }
+
+        .hero-title {
+            color: var(--ink) !important;
+        }
+
+        .hero-title span {
+            background-image: linear-gradient(90deg, var(--forest), var(--clay)) !important;
+        }
+
+        .hero-copy > div:first-child {
+            background: var(--surface-muted) !important;
+            border-color: var(--line) !important;
+            color: var(--forest) !important;
+            box-shadow: none !important;
+        }
+
+        .nav-cta:hover,
+        .hero-actions a:first-child:hover,
+        button[type="submit"]:hover {
+            background: var(--forest-dark) !important;
+        }
+
+        .service-card,
+        #novosti > div > div > div,
+        #recenzije .grid > div {
+            background-color: var(--surface) !important;
+            border-color: var(--line) !important;
+            box-shadow: 0 10px 28px rgb(38 58 51 / 5%) !important;
+        }
+
+        .service-card:hover {
+            border-color: #a9c1b2 !important;
+            box-shadow: 0 16px 34px rgb(38 58 51 / 9%) !important;
+        }
+
+        .form-box {
+            background-color: var(--surface-muted) !important;
+        }
+
+        input, select {
+            background-color: var(--surface) !important;
+            color: var(--ink) !important;
+            border-color: var(--line) !important;
+        }
+
+        input::placeholder {
+            color: #87938c !important;
+        }
+
+        [class*="rounded-"]:not([class~="rounded-full"]) {
+            border-radius: 0.55rem !important;
+        }
+
+        .hero-copy {
+            animation: fade-up 700ms ease-out both;
+        }
+
+        .service-card {
+            animation: fade-up 650ms ease-out both;
+        }
+
+        .service-card:nth-child(2) {
+            animation-delay: 100ms;
+        }
+
+        .service-card:nth-child(3) {
+            animation-delay: 200ms;
+        }
+
+        @keyframes fade-up {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .topbar-label {
+                display: none !important;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 antialiased selection:bg-teal-500 selection:text-slate-950">
@@ -124,13 +382,13 @@
         <div class="topbar-inner max-w-7xl mx-auto flex justify-between items-center text-slate-400">
             <div class="flex items-center gap-3 sm:gap-6 flex-wrap">
                 <!-- GOOGLE MAPS DIRECT LINK -->
-                <a href="https://maps.google.com/?q=Poliklinika" target="_blank" class="flex items-center gap-2 hover:text-teal-400 transition">
-                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-teal-400"></i> Centralna lokacija (Prikaži na mapi)
+                <a href="https://maps.google.com/?q=Poliklinika" target="_blank" rel="noopener noreferrer" aria-label="Prikaži lokaciju na mapi" title="Prikaži lokaciju na mapi" class="topbar-icon-link flex items-center gap-2 hover:text-teal-400 transition">
+                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-teal-400"></i><span class="topbar-label">Centralna lokacija (Prikaži na mapi)</span>
                 </a>
                 <span class="hidden md:flex items-center gap-2"><i data-lucide="clock" class="w-3.5 h-3.5 text-teal-400"></i> Pon - Sub: 08:00 - 20:00</span>
             </div>
-            <a href="tel:+38733000000" class="topbar-link hover:text-white font-semibold flex items-center gap-1.5 text-teal-400">
-                <i data-lucide="phone-call" class="w-3.5 h-3.5"></i> Hitni prijem: +387 33 000 000
+            <a href="tel:+387603474556" aria-label="Pozovite nas: 060 347 4556" title="Pozovite nas: 060 347 4556" class="topbar-link topbar-icon-link hover:text-white font-semibold flex items-center gap-1.5 text-teal-400">
+                <i data-lucide="phone-call" class="w-3.5 h-3.5"></i><span class="topbar-label">Pozovite nas: 060 347 4556</span>
             </a>
         </div>
     </div>
@@ -145,7 +403,7 @@
                     </div>
                     <div class="min-w-0">
                         <span class="brand-text text-xl font-black tracking-tight text-white block leading-none">POLIKLINIKA</span>
-                        <span class="brand-subtext text-[10px] text-teal-400 font-bold tracking-widest uppercase">Ekspertni centar</span>
+                        <span class="brand-subtext text-[10px] text-teal-400 font-bold tracking-widest uppercase">Dr. Bajramagić</span>
                     </div>
                 </div>
                 
@@ -159,7 +417,7 @@
 
                 <a href="#zakazi" class="nav-cta relative inline-flex items-center gap-2 bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-400 hover:to-blue-500 text-slate-950 font-extrabold px-6 py-3 rounded-2xl text-sm shadow-lg shadow-teal-500/20 hover:shadow-teal-500/40 hover:scale-105 transition-all duration-300">
                     <i data-lucide="calendar" class="w-4 h-4"></i>
-                    Zakaži pregled
+                    <span class="cta-desktop">Zakaži pregled</span><span class="cta-mobile hidden">Zakaži</span>
                 </a>
             </div>
         </div>
@@ -173,7 +431,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid lg:grid-cols-12 gap-12 items-center">
                 
-                <div class="lg:col-span-7 space-y-8">
+                <div class="hero-copy lg:col-span-7 space-y-8">
                     <div class="inline-flex items-center gap-2.5 bg-slate-900/90 border border-teal-500/30 text-teal-300 px-4 py-2 rounded-full text-xs font-bold backdrop-blur-md shadow-inner">
                         <span class="w-2.5 h-2.5 rounded-full bg-teal-400 animate-ping"></span>
                         Bez reda i dugog čekanja
@@ -382,7 +640,7 @@
                             </div>
                             <div>
                                 <span class="text-xs text-slate-500 block font-semibold">Direktni telefon</span>
-                                <span class="font-bold text-white text-lg">+387 33 000 000</span>
+                                <a href="tel:+387603474556" class="font-bold text-white text-lg hover:text-teal-400 transition">060 347 4556</a>
                             </div>
                         </div>
                     </div>
@@ -399,8 +657,8 @@
 
                         <div>
                             <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Broj telefona</label>
-                            <input type="tel" id="phone" placeholder="061 123 456" class="w-full px-4 py-3.5 rounded-2xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-teal-400 transition text-sm">
-                            <p id="err-phone" class="text-red-400 text-xs mt-1 hidden">Molimo unesite ispravan broj telefona (npr. 061123456).</p>
+                            <input type="tel" id="phone" placeholder="Unesite vaš broj telefona" class="w-full px-4 py-3.5 rounded-2xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-teal-400 transition text-sm">
+                            <p id="err-phone" class="text-red-400 text-xs mt-1 hidden">Molimo unesite ispravan broj telefona.</p>
                         </div>
 
                         <div>
@@ -425,7 +683,7 @@
 
     <!-- FOOTER -->
     <footer class="bg-slate-950 border-t border-slate-900 py-8 text-center text-xs text-slate-600 px-4">
-        <p>&copy; 2026 Poliklinika Ekspert. Sva prava zadržana.</p>
+        <p>&copy; 2026 Poliklinika dr. Bajramagić. Sva prava zadržana.</p>
     </footer>
 
     <script>
